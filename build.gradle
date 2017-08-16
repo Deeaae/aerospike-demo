@@ -10,9 +10,19 @@ buildscript {
 	}
 }
 
+plugins {
+	id "org.sonarqube" version "2.5"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+
+sonarqube {
+	properties {
+		property "sonar.projectName", "aerospike-demo"
+	}
+}
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -25,5 +35,6 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile "com.aerospike:aerospike-client:4.0.6"
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
